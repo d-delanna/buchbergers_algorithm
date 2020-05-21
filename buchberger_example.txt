@@ -1,10 +1,6 @@
-if __name__ == '__main__':
-    R.<x,y> = PolynomialRing(QQ, order='lex')
-    polynomials = [x**2 + 2*x*y**2, x*y + 2*y**3 - 1]
-    gb = groeb_basis(polynomials, [])
-    print '\n', "Pre-Reduced Groebner Basis", gb
-    GB = ideal(polynomials).groebner_basis()
-    print"Reduced Groebner Basis", GB
+R.<x,y> = PolynomialRing(QQ, order='lex')
+gb = GroebnerBasis([x**2 + 2*x*y**2, x*y + 2*y**3 - 1])  
+# Note: type = list, not type = ideal
 ____________________________________________________
 
 # Output:
@@ -56,6 +52,7 @@ S(x, 2*y^3 - 1) = 1/2*x
 
 
 Pre-Reduced Groebner Basis [x^2 + 2*x*y^2, x*y + 2*y^3 - 1, x, 2*y^3 - 1]
+Minimal Groebner Basis [x, 2*y^3 - 1]
 Reduced Groebner Basis [x, y^3 - 1/2]
 
 _______________________________________________________
