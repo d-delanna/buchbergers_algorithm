@@ -1,0 +1,68 @@
+if __name__ == '__main__':
+    R.<x,y> = PolynomialRing(QQ, order='lex')
+    polynomials = [x**2 + 2*x*y**2, x*y + 2*y**3 - 1]
+    gb = groeb_basis(polynomials, [])
+    print '\n', "Pre-Reduced Groebner Basis", gb
+    GB = ideal(polynomials).groebner_basis()
+    print"Reduced Groebner Basis", GB
+____________________________________________________
+
+# Output:
+
+(1)
+Basis [x^2 + 2*x*y^2, x*y + 2*y^3 - 1]
+S(x^2 + 2*x*y^2, x*y + 2*y^3 - 1) = x
+Non-zero Remainder. Add to Basis
+
+(2)
+Basis [x^2 + 2*x*y^2, x*y + 2*y^3 - 1, x]
+S(x^2 + 2*x*y^2, x) = 2*x*y^2
+2*x*y^2 =  [0, 0, 2*y^2] * [x^2 + 2*x*y^2, x*y + 2*y^3 - 1, x]^T, 
+
+(3)
+Basis [x^2 + 2*x*y^2, x*y + 2*y^3 - 1, x]
+S(x*y + 2*y^3 - 1, x^2 + 2*x*y^2) = -x
+-x =  [0, 0, -1] * [x^2 + 2*x*y^2, x*y + 2*y^3 - 1, x]^T, 
+
+(4)
+Basis [x^2 + 2*x*y^2, x*y + 2*y^3 - 1, x]
+S(x*y + 2*y^3 - 1, x) = 2*y^3 - 1
+Non-zero Remainder. Add to Basis
+
+(5)
+Basis [x^2 + 2*x*y^2, x*y + 2*y^3 - 1, x, 2*y^3 - 1]
+S(x^2 + 2*x*y^2, 2*y^3 - 1) = 1/2*x^2 + 2*x*y^5
+1/2*x^2 + 2*x*y^5 =  [0, 0, 1/2*x + 2*y^5, 0] * [x^2 + 2*x*y^2, x*y + 2*y^3 - 1, x, 2*y^3 - 1]^T, 
+
+(6)
+Basis [x^2 + 2*x*y^2, x*y + 2*y^3 - 1, x, 2*y^3 - 1]
+S(x*y + 2*y^3 - 1, 2*y^3 - 1) = 1/2*x + 2*y^5 - y^2
+1/2*x + 2*y^5 - y^2 =  [0, 0, 1/2, y^2] * [x^2 + 2*x*y^2, x*y + 2*y^3 - 1, x, 2*y^3 - 1]^T, 
+
+(7)
+Basis [x^2 + 2*x*y^2, x*y + 2*y^3 - 1, x, 2*y^3 - 1]
+S(x, x^2 + 2*x*y^2) = -2*x*y^2
+-2*x*y^2 =  [0, 0, -2*y^2, 0] * [x^2 + 2*x*y^2, x*y + 2*y^3 - 1, x, 2*y^3 - 1]^T, 
+
+(8)
+Basis [x^2 + 2*x*y^2, x*y + 2*y^3 - 1, x, 2*y^3 - 1]
+S(x, x*y + 2*y^3 - 1) = -2*y^3 + 1
+-2*y^3 + 1 =  [0, 0, 0, -1] * [x^2 + 2*x*y^2, x*y + 2*y^3 - 1, x, 2*y^3 - 1]^T, 
+
+(9)
+Basis [x^2 + 2*x*y^2, x*y + 2*y^3 - 1, x, 2*y^3 - 1]
+S(x, 2*y^3 - 1) = 1/2*x
+1/2*x =  [0, 0, 1/2, 0] * [x^2 + 2*x*y^2, x*y + 2*y^3 - 1, x, 2*y^3 - 1]^T, 
+
+
+Pre-Reduced Groebner Basis [x^2 + 2*x*y^2, x*y + 2*y^3 - 1, x, 2*y^3 - 1]
+Reduced Groebner Basis [x, y^3 - 1/2]
+
+_______________________________________________________
+
+Ordering of tuples: (quotient, divisors, dividend) = (quotient, functions, s-poly)
+In the results, for group 1, x had a non-zero remainder on the division of the functions, so it was added to the list.
+In group 2, the basis now contains x. The new s-poly has a 0 remainder.
+    The quotient is a list of the same length as functions. The s-poly can be made by (2*y^2)(x).
+Another example would be oin Group 6, the s-poly can be made by 1/2(x) + (y^2)(2*y^3 - 1).
+Continue until the division on s-polys = 0 for all s-pairs of the list.
