@@ -1,0 +1,20 @@
+
+R.<x, y, z> = PolynomialRing(QQ, order='lex')
+I = [x*z-y^2, x^3-y*z]
+J = [x, y]  # Note: type list of generating polynomials, type not ideals
+
+quotient = IdealQuotient(I, J)
+print(quotient.ideal_quotient)
+return: [x^3 - y*z, x^2*y - z^2, x*y^3 - z^3, x*z - y^2, y^5 - z^4]
+
+____________________________________________________________________________
+
+R.<x_0, x, y, z> = PolynomialRing(QQ, order='lex')  # Note: x_0 must be defined as a variable
+sat = Saturation(I, J)
+print(sat.saturation)  # answer is the same since I:J^1 = I:J^\infty in this case (*)
+return: [x^3 - y*z, x^2*y - z^2, x*y^3 - z^3, x*z - y^2, y^5 - z^4]
+
+(*) Def: (I:J) to be the ideal quotient of the two ideals
+    Def: (I:J^\infty) to be the saturation of I w.r.t. J
+    Left without a proof: Proposition: I:J^\infty = I:J^N for sufficiently large N
+    
