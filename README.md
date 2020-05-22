@@ -1,7 +1,7 @@
 # Ideal Algorithms
 
-Groebner basis of polynomials using Buchberger's Algorithm (instead of the standard Singular). 
-Shows intermediate stages, pre-reduced, minimal, and reduced.
+Groebner basis of polynomials using Buchberger's Algorithm. 
+Shows all intermediate stages, pre-reduced, minimal, and reduced.
 Example and Buchberger's algorithm given in:
 http://www.lpthe.jussieu.fr/~talon/buchberger.html
 
